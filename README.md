@@ -1,6 +1,6 @@
 # hooker-marketplace
 
-Two Claude Code plugins from one [marketplace](https://gitlab.com/treetank/hooker).
+Two Claude Code plugins from one [marketplace](https://github.com/treetank-net/hooker).
 
 ## Hooker
 
@@ -29,7 +29,7 @@ Full docs: [`cache-catcher/README.md`](cache-catcher/README.md)
 ## Install
 
 ```bash
-/plugin marketplace add https://gitlab.com/treetank/hooker.git
+/plugin marketplace add https://github.com/treetank-net/hooker.git
 /plugin install hooker@hooker-marketplace
 /plugin install cache-catcher@hooker-marketplace
 ```

@@ -11,21 +11,11 @@ mirror-github:
     GIT_STRATEGY: clone
     GIT_DEPTH: 0
   script:
-    - git config user.email "marianski.jacek@gmail.com"
-    - git config user.name "treetank CI"
-    - git checkout master
     - |
-      NOTICE='> **Mirror**: This is a read-only mirror of [gitlab.com/treetank/hooker](https://gitlab.com/treetank/hooker). Active development happens there.'
-      # Prepend mirror notice to root README
-      if ! head -1 README.md | grep -q "Mirror"; then
-        printf '%s\n\n' "$NOTICE" | cat - README.md > README.tmp && mv README.tmp README.md
+      if [ -z "${GITHUB_TREETANK_TOKEN:-}" ]; then
+        echo "GITHUB_TREETANK_TOKEN must be configured in GitLab CI variables." >&2
+        exit 1
       fi
-      # Replace GitLab marketplace URL with GitHub in all READMEs
-      find . -name "README.md" -not -path "./.git/*" -exec \
-        sed -i 's|https://gitlab.com/treetank/hooker\.git|https://github.com/jmarianski/hooker.git|g' {} +
-      find . -name "README.md" -not -path "./.git/*" -exec \
-        sed -i 's|https://gitlab.com/treetank/hooker|https://github.com/jmarianski/hooker|g' {} +
-      git add -A
-      git diff --cached --quiet || git commit -m "GitHub mirror: update URLs and add notice [skip ci]"
-    - git push --force "https://${GITHUB_TOKEN}@github.com/jmarianski/hooker.git" master
-    - git push --force --tags "https://${GITHUB_TOKEN}@github.com/jmarianski/hooker.git"
+    - git checkout -B master "$CI_COMMIT_SHA"
+    - git push --force "https://${GITHUB_TREETANK_TOKEN}@github.com/treetank-net/hooker.git" master
+    - git push --force --tags "https://${GITHUB_TREETANK_TOKEN}@github.com/treetank-net/hooker.git"

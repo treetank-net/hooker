@@ -5,7 +5,7 @@ Monitor Claude Code prompt cache health in real time. Detects when `cache_creati
 ## Installation
 
 ```bash
-/plugin marketplace add https://gitlab.com/treetank/hooker.git
+/plugin marketplace add https://github.com/treetank-net/hooker.git
 /plugin install cache-catcher@hooker-marketplace
 ```
 

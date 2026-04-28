@@ -3,7 +3,7 @@
 set -euo pipefail
 
 MARKETPLACE_NAME="hooker-marketplace"
-DEFAULT_REPO_URL="https://gitlab.com/treetank/hooker.git"
+DEFAULT_REPO_URL="https://github.com/treetank-net/hooker.git"
 DEFAULT_MARKETPLACE_ROOT="${HOME}/.codex/marketplaces"
 MARKETPLACE_ROOT=""
 REPO_URL=""
