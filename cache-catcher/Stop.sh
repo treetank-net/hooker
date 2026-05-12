@@ -43,6 +43,11 @@ log() { echo "[$(date '+%H:%M:%S')] [stop] $*" >> "$LOG"; }
 
 log "Stop fired. session=${SESSION_ID}"
 
+# --- Update last_active (agent just finished its turn) ---
+SESSION_STATE="${STATE_DIR}/${SESSION_ID}.session"
+echo "last_active: $(date +%s)" > "$SESSION_STATE"
+log "Updated last_active"
+
 # --- Check if PostToolUse already handled this turn ---
 PTU_FILE="${STATE_DIR}/${SESSION_ID}.ptu_fired"
 if [ -f "$PTU_FILE" ]; then

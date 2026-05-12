@@ -14,7 +14,7 @@
       "description": "Monitor Claude Code cache health. Warns or blocks when cache writes exceed reads, indicating broken prompt caching.",
       "name": "cache-catcher",
       "source": "./cache-catcher",
-      "version": "0.6.3"
+      "version": "0.6.4"
     },
     {
       "description": "Autonomous multi-iteration task execution with fresh context. Activates when RALPH_ITERATION env var is set by outer loop.",

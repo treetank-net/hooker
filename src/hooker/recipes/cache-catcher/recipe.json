@@ -1,7 +1,7 @@
 {
   "name": "Cache Catcher",
   "description": "Monitor Claude Code cache health. Warns or blocks when cache writes exceed reads, indicating broken prompt caching.",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "hooks": ["SessionStart", "UserPromptSubmit", "PostToolUse", "Stop"],
   "compatibility": {
     "claude": "native",

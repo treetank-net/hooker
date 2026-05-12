@@ -178,25 +178,6 @@ case "$PROMPT" in
         ;;
 esac
 
-# =========================================================
-# UPDATE last_active via async JSONL watcher
-# Fires after guard passed (not blocked). Waits for new JSONL line = API responded.
-# =========================================================
-if [ -n "$SESSION_ID" ] && [ -n "$TRANSCRIPT" ]; then
-    STATE_FILE_S="${STATE_DIR}/${SESSION_ID}.session"
-    INIT_LINES=$(wc -l < "$TRANSCRIPT" 2>/dev/null || echo 0)
-    (
-        for delay in 1 10 20 60; do
-            sleep $delay
-            NEW_LINES=$(wc -l < "$TRANSCRIPT" 2>/dev/null || echo 0)
-            if [ "$NEW_LINES" -gt "$INIT_LINES" ]; then
-                echo "last_active: $(date +%s)" > "$STATE_FILE_S"
-                exit 0
-            fi
-        done
-    ) </dev/null >/dev/null 2>&1 & disown
-fi
-
 [ -z "$PREFIX" ] && exit 0
 
 CLI="${SCRIPT_DIR}/scripts/cache-catcher.sh"
